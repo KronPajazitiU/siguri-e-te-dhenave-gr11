@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//  INPUTI DHE VALIDIMI
+//  Imputi dhe validimi
 bool isKeyValid(string key) {
     if (key.empty()) return false;
     for (char c : key) {
@@ -23,3 +23,21 @@ string getMessage(string prompt) {
 }
 
 return 0;
+//text processing
+string processBeaufort(string text, string key) {
+    string result = "";
+    int keyIndex = 0;
+
+    for (int i = 0; i < text.length(); i++) {
+        if (isalpha(text[i])) {
+            result += transformChar(text[i], key[keyIndex % key.length()]);
+            keyIndex++;
+        } else {
+            result += text[i];
+        }
+    }
+    return result;
+}
+
+
+
