@@ -1,0 +1,20 @@
+// ---INTEGRIMI ---
+int main() {
+    cout << "--- BEAUFORT CIPHER SYSTEM ---" << endl;
+
+    string msg = getMessage("Shkruani mesazhin: ");
+    string key = getMessage("Shkruani celësin: ");
+
+    if (!isKeyValid(key)) {
+        cout << "Gabim: Celësi duhet të ketë vetëm shkronja!" << endl;
+        return 1;
+    }
+
+    string encrypted = processBeaufort(msg, key);
+    cout << "\nTeksti i Enkriptuar: " << encrypted << endl;
+
+    string decrypted = processBeaufort(encrypted, key);
+    cout << "Teksti i Dekriptuar: " << decrypted << endl;
+
+    return 0;
+}
