@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 //  Imputi dhe validimi
 bool isKeyValid(string key) {
     if (key.empty()) return false;
@@ -22,7 +23,20 @@ string getMessage(string prompt) {
     return input;
 }
 
-return 0;
+// logjika 
+char transformChar(char p, char k) {
+    if (!isalpha(p)) return p;
+
+    bool isLower = islower(p);
+    char P = toupper(p);
+    char K = toupper(k);
+
+    // Formula: C = (K - P + 26) % 26
+    int cIndex = (K - P + 26) % 26;
+    char res = (char)(cIndex + 'A');
+
+    return isLower ? (char)tolower(res) : res;
+}
 //text processing
 string processBeaufort(string text, string key) {
     string result = "";
