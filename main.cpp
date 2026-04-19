@@ -2,11 +2,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
-// ---INTEGRIMI ---
 int main() {
-    cout << "--- BEAUFORT CIPHER SYSTEM ---" << endl;
+    int zgjedhja;
+    cout << "==============================" << endl;
+    cout << "   BEAUFORT CIPHER SYSTEM    " << endl;
+    cout << "==============================" << endl;
+    cout << "1. Enkripto Mesazhin" << endl;
+    cout << "2. Dekripto Mesazhin" << endl;
+    cout << "Zgjedhja juaj (1 ose 2): ";
+    cin >> zgjedhja;
+    cin.ignore(); // Pastron buffer-in pas leximit të numrit
 
-    string msg = getMessage("Shkruani mesazhin: ");
+    if (zgjedhja != 1 && zgjedhja != 2) {
+        cout << "Zgjedhje e gabuar! Programi do te mbyllet." << endl;
+        return 1;
+    }
+
+    string msg = getMessage("\nShkruani tekstin: ");
     string key = getMessage("Shkruani celësin: ");
 
     if (!isKeyValid(key)) {
@@ -14,13 +26,16 @@ int main() {
         return 1;
     }
 
-    string encrypted = processBeaufort(msg, key);
-    cout << "\nTeksti i Enkriptuar: " << encrypted << endl;
+    // Ekzekutimi (logjika eshte e njejte per te dyja)
+    string result = processBeaufort(msg, key);
 
-    string decrypted = processBeaufort(encrypted, key);
-    cout << "Teksti i Dekriptuar: " << decrypted << endl;
+    if (zgjedhja == 1) {
+        cout << "\n--- Rezultati i Enkriptimit ---" << endl;
+    } else {
+        cout << "\n--- Rezultati i Dekriptimit ---" << endl;
+    }
+    
+    cout << "Teksti: " << result << endl;
+    cout << "==============================" << endl;
 
     return 0;
-}
-
-using namespace std;
